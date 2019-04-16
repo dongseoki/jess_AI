@@ -89,7 +89,7 @@ public class InvCon extends JFrame {
 	private void btnRunActionPerformed(ActionEvent e) {
 	      try {
 		ReadJessFile readJessFile = new  					       
-	                     ReadJessFile("c:\\Users\\...\\workspace\\ConsultInv\\bin\\Consult.clp");
+	                     ReadJessFile("C:\\Users\\like_\\Documents\\GitHub\\jess_AI\\financial_expert.clp");
 		String strTemp = readJessFile.getJessFileContent();		
 		if (strTemp.substring(0, 1).equals("1")) {  // 0번째 첫 문자열 
 			this.engine = new Rete();

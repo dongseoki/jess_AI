@@ -1,71 +1,150 @@
-;	Â§Guideline 1: 
-;	    1. savings_account(inadequate) Ãž investment(savings).
+;	¡×Guideline 1: 
+;	    1. savings_account(inadequate) ¨­ investment(savings).
 ;	
-;	Â§Guideline 2:                                                              
-;	    2. savings_account(adequate) Ã™ income(adequate)  Ãž investment(stocks).                                                
+;	¡×Guideline 2:                                                              
+;	    2. savings_account(adequate) U income(adequate)  ¨­ investment(stocks).                                                
 ;	    
-;	Â§Guideline 3:
-;	   3. savings_account(adequate) Ã™ income(inadequate)  Ãž investment(combination).
+;	¡×Guideline 3:
+;	   3. savings_account(adequate) U income(inadequate)  ¨­ investment(combination).
 ;	
-;	Â§Guideline 4:   
+;	¡×Guideline 4:   
 ;	  
-;	   4. amount_saved(X) Ã™  (dependents(Y) Ã™ greater(X,minsavings(Y))) 
-;	       Ãž savings_account(adequate).   
-;	   5. amount_saved(X) Ã™ (dependents(Y) Ã™ Ã˜ greater(X, minsavings(Y))) 
-;	      Ãž savings_account(inadequate). 
+;	   4. amount_saved(X) U  (dependents(Y) U greater(X,minsavings(Y))) 
+;	       ¨­ savings_account(adequate).   
+;	   5. amount_saved(X) U (dependents(Y) U ¨ª greater(X, minsavings(Y))) 
+;	      ¨­ savings_account(inadequate). 
 ;	 
 ;	   where  minsavings(X) = 5000 * X
 ;	
-;	Â§Guideline 5:   
-;	    6. earnings(X, steady) Ã™ (dependents(Y) Ã™ greater(X, minincome(Y)))  
-;	      Ãž income(adequate).  
+;	¡×Guideline 5:   
+;	    6. earnings(X, steady) U (dependents(Y) U greater(X, minincome(Y)))  
+;	      ¨­ income(adequate).  
 ;	  
-;	    7. earnings(X, steady) Ã™ (dependents(Y) Ã™ Ã˜ greater(X, minincome(Y)))  
-;	       Ãž income(inadequate).
-;	     8. earnings(X, unsteady) Ãž income(inadequate). 
+;	    7. earnings(X, steady) U (dependents(Y) U ¨ª greater(X, minincome(Y)))  
+;	       ¨­ income(inadequate).
+;	     8. earnings(X, unsteady) ¨­ income(inadequate). 
 ;	     where  minincome(X) = 15000 + (4000 * X)  
 
 
+;mimincome(X) = 15000 + 4000 * X
 ;minincome(Y)
 ;(+ 15000 (* 4000 ?y))
+
+;minsavings(X) = 5000 * X
+;minsaving(Y)
+;(* 5000 ?y)
 
 ; greater(X, minincome(Y))
 ; (dependents ?y&: (>= ?x (+ 15000 (* 4000 ?y))))
 
-clear
-reset
+(clear)
+(reset)
 
+(deffunction investment_savings ()
+           (printout t "Àç»êÀÌ ÃæºÐÇÏÁö ¾ÊÀ¸¹Ç·Î" crlf)
+           (printout t "Àú±Ý¿¡ ÅõÀÚÇÏ½Ê½Ã¿À." crlf crlf))
+
+(deffunction investment_stocks ()
+           (printout t "Àç»êÀÌ ÃæºÐÇÏ°í" crlf)
+           (printout t "ÇöÀç ¼öÀÔÀÌ ÃæºÐ ÇÏ¹Ç·Î" crlf)
+           (printout t "ÁÖ½Ä¿¡ ÅõÀÚÇÏ½Ê½Ã¿À." crlf crlf))
+
+(deffunction investment_combination ()
+           (printout t "Àç»êÀÌ ÃæºÐÇÏ°í" crlf)
+           (printout t "ÇöÀç ¼öÀÔÀÌ ºÒÃæºÐ ÇÏ¹Ç·Î" crlf)
+           (printout t "Àú±Ý°ú ÁÖ½Ä¿¡ ¹Ý¹Ý ÅõÀÚÇÏ½Ê½Ã¿À." crlf crlf))
+
+(deffunction savings_account_ad (?x, ?y)
+           (printout t "ÇöÀç ¸ð¾ÆµÐ Àç»êÀº " ?x "ÀÌ°í" crlf)
+           (printout t "ºÎ¾ç°¡Á· " ?y "¸íÀ» ºÎ¾çÇÏ±âÀ§ÇØ ÇÊ¿ä·Î ÇÏ´Â Àç»êÀÇ" crlf)
+           (printout t "ÃæºÐ¿©ºÎ¸¦ ÆÇ´ÜÇÏ´Â ±âÁØÀº " (* 5000 ?y) 
+                    "ÀÌ¹Ç·Î" crlf)
+           (printout t "Àç»êÀº ÃæºÐÇÑ °ÍÀ¸·Î ÆÇ´Ü µË´Ï´Ù." crlf crlf))
+
+(deffunction savings_account_inad (?x, ?y)
+           (printout t "ÇöÀç ¸ð¾ÆµÐ Àç»êÀº " ?x "ÀÌ°í" crlf)
+           (printout t "ºÎ¾ç°¡Á· " ?y "¸íÀ» ºÎ¾çÇÏ±âÀ§ÇØ ÇÊ¿ä·Î ÇÏ´Â Àç»êÀÇ" crlf)
+           (printout t "ÃæºÐ¿©ºÎ¸¦ ÆÇ´ÜÇÏ´Â ±âÁØÀº " (* 5000 ?y) 
+                    "ÀÌ¹Ç·Î" crlf)
+           (printout t "Àç»êÀº ºÒÃæºÐÇÑ °ÍÀ¸·Î ÆÇ´Ü µË´Ï´Ù." crlf crlf))
 
 (deffunction incomead (?x, ?y)
-           (printout t "í˜„ìž¬ ì—°ìˆ˜ìž…ì€ " ?x "ì´ê³ " crlf)
-           (printout t "ë¶€ì–‘ê°€ì¡± " ?y "ëª…ì„ ë¶€ì–‘í•˜ê¸°ìœ„í•´ í•„ìš”ë¡œ í•˜ëŠ” ìˆ˜ìž…ì˜" crlf)
-           (printout t "ì¶©ë¶„ì—¬ë¶€ë¥¼ íŒë‹¨í•˜ëŠ” ê¸°ì¤€ì€ " (+ 15000 (* 4000 ?y)) 
-                    "ì´ë¯€ë¡œ" crlf)
-           (printout t "ìˆ˜ìž…ì€ ì¶©ë¶„í•œ ê²ƒìœ¼ë¡œ íŒë‹¨ ë©ë‹ˆë‹¤." crlf crlf))
+           (printout t "ÇöÀç ¿¬¼öÀÔÀº " ?x "ÀÌ°í" crlf)
+           (printout t "ºÎ¾ç°¡Á· " ?y "¸íÀ» ºÎ¾çÇÏ±âÀ§ÇØ ÇÊ¿ä·Î ÇÏ´Â ¼öÀÔÀÇ" crlf)
+           (printout t "ÃæºÐ¿©ºÎ¸¦ ÆÇ´ÜÇÏ´Â ±âÁØÀº " (+ 15000 (* 4000 ?y)) 
+                    "ÀÌ¹Ç·Î" crlf)
+           (printout t "¼öÀÔÀº ÃæºÐÇÑ °ÍÀ¸·Î ÆÇ´Ü µË´Ï´Ù." crlf crlf))
 
 (deffunction incomeinad (?x, ?y)
-           (printout t "í˜„ìž¬ ì—°ìˆ˜ìž…ì€ " ?x "ì´ê³ " crlf)
-           (printout t "ë¶€ì–‘ê°€ì¡± " ?y "ëª…ì„ ë¶€ì–‘í•˜ê¸°ìœ„í•´ í•„ìš”ë¡œ í•˜ëŠ” ìˆ˜ìž…ì˜" crlf)
-           (printout t "ì¶©ë¶„ì—¬ë¶€ë¥¼ íŒë‹¨í•˜ëŠ” ê¸°ì¤€ì€ " (+ 15000 (* 4000 ?y)) 
-                    "ì´ë¯€ë¡œ" crlf)
-           (printout t "ìˆ˜ìž…ì€ ë¶ˆì¶©ë¶„í•œ ê²ƒìœ¼ë¡œ íŒë‹¨ ë©ë‹ˆë‹¤." crlf crlf))
+           (printout t "ÇöÀç ¿¬¼öÀÔÀº " ?x "ÀÌ°í" crlf)
+           (printout t "ºÎ¾ç°¡Á· " ?y "¸íÀ» ºÎ¾çÇÏ±âÀ§ÇØ ÇÊ¿ä·Î ÇÏ´Â ¼öÀÔÀÇ" crlf)
+           (printout t "ÃæºÐ¿©ºÎ¸¦ ÆÇ´ÜÇÏ´Â ±âÁØÀº " (+ 15000 (* 4000 ?y)) 
+                    "ÀÌ¹Ç·Î" crlf)
+           (printout t "¼öÀÔÀº ºÒÃæºÐÇÑ °ÍÀ¸·Î ÆÇ´Ü µË´Ï´Ù." crlf crlf))
 		   
 (deffunction incomeinad_unsteady (?x)
-           (printout t "í˜„ìž¬ ì—°ìˆ˜ìž…ì€ " ?x "ì´ì§€ë§Œ" crlf)
-           (printout t "í˜„ìž¬ ìˆ˜ìž…ì´ ë¶ˆì•ˆì • í•˜ë¯€ë¡œ" crlf)
-           (printout t "ìˆ˜ìž…ì€ ë¶ˆì¶©ë¶„í•œ ê²ƒìœ¼ë¡œ íŒë‹¨ ë©ë‹ˆë‹¤." crlf crlf))
+           (printout t "ÇöÀç ¿¬¼öÀÔÀº " ?x "ÀÌÁö¸¸" crlf)
+           (printout t "ÇöÀç ¼öÀÔÀÌ ºÒ¾ÈÁ¤ ÇÏ¹Ç·Î" crlf)
+           (printout t "¼öÀÔÀº ºÒÃæºÐÇÑ °ÍÀ¸·Î ÆÇ´Ü µË´Ï´Ù." crlf crlf))
+
+;	¡×Guideline 1: 
+;	    1. savings_account(inadequate) ¨­ investment(savings).
+;	
+                                                		   
+(defrule R1
+          (savings_account inadequate)
+          =>
+         (investment_savings)
+         (assert (investment savings)));  actually, it doesn't need		   
+
+;	¡×Guideline 2:                                                              
+;	    2. savings_account(adequate) U income(adequate)  ¨­ investment(stocks).
+
+(defrule R2
+          (savings_account adequate)
+          (income adequate)
+          =>
+         (investment_stocks)
+         (assert (investment stocks)));  actually, it doesn't need		   
+		   
+;	¡×Guideline 3:
+;	   3. savings_account(adequate) U income(inadequate)  ¨­ investment(combination).
+
+(defrule R3
+          (savings_account adequate)
+          (income inadequate)
+          =>
+         (investment_combination)
+         (assert (investment combination)));  actually, it doesn't need
+
+		   
+;	   4. amount_saved(X) U  (dependents(Y) U greater(X,minsavings(Y))) 
+;	       ¨­ savings_account(adequate).
+		   
+(defrule R4
+          (amount_saved ?x)
+          (dependents ?y&: (>= ?x (* 5000 ?y))) 		; greater(X, minsaving(Y))
+          =>
+         (savings_account_ad ?x ?y)
+         (assert (savings_account adequate)))
+		   
+
+;	   5. amount_saved(X) U (dependents(Y) U ¨ª greater(X, minsavings(Y))) 
+;	      ¨­ savings_account(inadequate).		   
+
+(defrule R5
+          (amount_saved ?x)
+          (dependents ?y&: (< ?x (* 5000 ?y))) 		; not greater(X, minsaving(Y))
+          =>
+         (savings_account_inad ?x ?y)
+         (assert (savings_account inadequate)))
 
 
-;	   5. amount_saved(X) Ã™ (dependents(Y) Ã™ Ã˜ greater(X, minsavings(Y))) 
-;	      Ãž savings_account(inadequate).		   
 
 
 
-
-
-
-;	    6. earnings(X, steady) Ã™ (dependents(Y) Ã™ greater(X, minincome(Y)))  
-;	      Ãž income(adequate). 
+;	    6. earnings(X, steady) U (dependents(Y) U greater(X, minincome(Y)))  
+;	      ¨­ income(adequate). 
 
 (defrule R6
           (earnings ?x steady)
@@ -76,18 +155,18 @@ reset
          (assert (income adequate)))
 		 
 		 
-;	    7. earnings(X, steady) Ã™ (dependents(Y) Ã™ Ã˜ greater(X, minincome(Y)))  
-;	       Ãž income(inadequate).
+;	    7. earnings(X, steady) U (dependents(Y) U ¨ª greater(X, minincome(Y)))  
+;	       ¨­ income(inadequate).
 
 (defrule R7
           (earnings ?x steady)
 		  ;
-          (dependents ?y&: (< ?x (+ 15000 (* 4000 ?y)))) 		; greater(X, minincome(Y))
+          (dependents ?y&: (< ?x (+ 15000 (* 4000 ?y)))) 		; not greater(X, minincome(Y))
           =>
          (incomeinad ?x ?y)
          (assert (income inadequate)))
 
-;	     8. earnings(X, unsteady) Ãž income(inadequate). 
+;	     8. earnings(X, unsteady) ¨­ income(inadequate). 
 ;	     where  minincome(X) = 15000 + (4000 * X) 
 		 
 (defrule R8
@@ -98,5 +177,5 @@ reset
 
 
 ; test
-(printout t "Hello, world!" crlf)
-(printout t "Hello, world!2" crlf)
+;(printout t "Hello, world!" crlf)
+;(printout t "Hello, world!2" crlf)
