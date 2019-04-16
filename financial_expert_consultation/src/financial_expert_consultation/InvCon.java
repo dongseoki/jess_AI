@@ -10,8 +10,8 @@ public class InvCon extends JFrame {
 	
 	TextArea t;
 	JButton b1, b2 ;
-	JTextField  tf1, tf2, tf3 ;
-	JLabel jl1, jl2, jl3 ;
+	JTextField  tf0, tf1, tf2, tf3 ;
+	JLabel jl0, jl1, jl2, jl3 ;
 	String fs;
 	Rete engine ;
 	
@@ -36,11 +36,22 @@ public class InvCon extends JFrame {
 		b2.setSize(180, 30);
 		b2.setLocation(630, 30);
 		add(b2);
+		
+		jl0 = new JLabel("ø¨º“µÊ æ»¡§º∫");
+		tf0 = new JTextField(20);
+		jl0.setSize(100, 20);
+		tf0.setSize(260, 20);	
+		jl0.setLocation(450, 60);
+	    add(jl0);
+	     add(tf0);
+	     tf0.setLocation(550, 60);
+		
 		jl1 = new JLabel("ø¨º“µÊ");
 		tf1 = new JTextField(20);
 		jl1.setSize(100, 30);
 		tf1.setSize(260, 30);	
 		jl1.setLocation(450, 80);
+		
 		
 		
 		
