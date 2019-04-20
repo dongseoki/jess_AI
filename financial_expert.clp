@@ -70,6 +70,7 @@
 
 (deffunction incomead (?x, ?y)
            (printout t "현재 연수입은 " ?x "이고" crlf)
+		   (printout t "그 수입은 안정적이며" crlf)
            (printout t "부양가족 " ?y "명을 부양하기위해 필요로 하는 수입의" crlf)
            (printout t "충분여부를 판단하는 기준은 " (+ 15000 (* 4000 ?y)) 
                     "이므로" crlf)
@@ -77,6 +78,7 @@
 
 (deffunction incomeinad (?x, ?y)
            (printout t "현재 연수입은 " ?x "이고" crlf)
+		   (printout t "그 수입은 안정적이지만" crlf)
            (printout t "부양가족 " ?y "명을 부양하기위해 필요로 하는 수입의" crlf)
            (printout t "충분여부를 판단하는 기준은 " (+ 15000 (* 4000 ?y)) 
                     "이므로" crlf)
