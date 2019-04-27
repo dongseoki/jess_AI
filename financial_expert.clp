@@ -162,7 +162,6 @@
 
 (defrule R7
           (earnings ?x steady)
-		  ;
           (dependents ?y&: (< ?x (+ 15000 (* 4000 ?y)))) 		; not greater(X, minincome(Y))
           =>
          (incomeinad ?x ?y)
@@ -178,6 +177,3 @@
          (assert (income inadequate)))
 
 
-; test
-;(printout t "Hello, world!" crlf)
-;(printout t "Hello, world!2" crlf)
