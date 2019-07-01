@@ -6,3 +6,4 @@
 
 
 #재정룰.
+![team_role](https://github.com/dongseoki/jess_AI/blob/master/financial_rule.png)
